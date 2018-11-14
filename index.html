@@ -44,6 +44,7 @@
 	<script src="common.js"></script>
 </head>
 <body>
+<div id="debugging" style="position:absolute;top:0;left:0">debugging messages</div>
 <div id="target" />
 <div id="hubs" style="width: 100px; display: none">
 	<img id="hubs-image" src="hubs.png" >
@@ -94,11 +95,12 @@
             let filename = "";
             // filename = "./DuckyMesh.glb";
             filename = "./scene.gltf";
-            this._messageEl.innerHTML = " attempting to load " + filename
+            let debugging = document.getElementById("debugging")
+            debugging.innerHTML = " attempting to load " + filename;
             loadGLTF(filename).then(gltf => {
-                alert("worked")
-                console.log("Successfully loaded " + filename)
-                this._messageEl.innerHTML = "succeeded loading " + filename
+                alert("worked");
+                console.log("Successfully loaded " + filename);
+                debugging.innerHTML = "succeeded loading " + filename
                 this.ducky = new THREE.Group()
                 this.ducky.name = "Duck group"
                 this.duckyNode = gltf.scene
@@ -106,9 +108,9 @@
                 this.ducky.add(this.duckyNode)
                 this.duckyCreated = true
             }).catch((...params) =>{
-                alert("error")
-                alert(params)
-                this._messageEl.innerHTML = "error loading " + filename
+                alert("error");
+                alert(params);
+                debugging.innerHTML = "error loading " + filename;
             })
         }
 
