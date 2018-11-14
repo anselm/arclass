@@ -94,8 +94,11 @@
             let filename = "";
             // filename = "./DuckyMesh.glb";
             filename = "./scene.gltf";
+            this._messageEl.innerHTML = " attempting to load " + filename
             loadGLTF(filename).then(gltf => {
+                alert("worked")
                 console.log("Successfully loaded " + filename)
+                this._messageEl.innerHTML = "succeeded loading " + filename
                 this.ducky = new THREE.Group()
                 this.ducky.name = "Duck group"
                 this.duckyNode = gltf.scene
@@ -103,7 +106,9 @@
                 this.ducky.add(this.duckyNode)
                 this.duckyCreated = true
             }).catch((...params) =>{
-                console.error('could not load gltf', ...params)
+                alert("error")
+                alert(params)
+                this._messageEl.innerHTML = "error loading " + filename
             })
         }
 
