@@ -86,19 +86,23 @@
             directionalLight.position.set(0, 10, 0)
             this.scene.add(directionalLight)
 
-			this.duckyCreated = false
+            this.duckyCreated = false
             this.imageDetectionCreationRequested = false
             this.imageActivateDection = false;
             this.imageActivated = false;
 
-			loadGLTF('./DuckyMesh.glb').then(gltf => {
-			    this.ducky = new THREE.Group()
+            let filename = "";
+            // filename = "./DuckyMesh.glb";
+            filename = "./scene.gltf";
+            loadGLTF(filename).then(gltf => {
+                console.log("Successfully loaded " + filename)
+                this.ducky = new THREE.Group()
                 this.ducky.name = "Duck group"
                 this.duckyNode = gltf.scene
                 this.duckyNode.position.set(0, -0.01, 0)
-				this.ducky.add(this.duckyNode)
+                this.ducky.add(this.duckyNode)
                 this.duckyCreated = true
-			}).catch((...params) =>{
+            }).catch((...params) =>{
                 console.error('could not load gltf', ...params)
             })
         }
