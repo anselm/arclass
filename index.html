@@ -105,6 +105,7 @@
                 this.ducky.name = "Duck group"
                 this.duckyNode = gltf.scene
                 this.duckyNode.position.set(0, -0.01, 0)
+                this.duckyNode.scale.set(0.001,0.001,0.001)
                 this.ducky.add(this.duckyNode)
                 this.duckyCreated = true
             }).catch((...params) =>{
